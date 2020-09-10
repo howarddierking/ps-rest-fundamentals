@@ -44,7 +44,7 @@
 ## RESTful Client Design
 * REST clients are harder - Tradeoffs
 * Client design process
-* Entry point resource (I don't really buy into this anymore)
+* Entry point resource
 * conditional requests and optimistic concurrency 
 * content negotiation
     * I actually showed versioning with server driven conneg - geez I was naive

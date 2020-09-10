@@ -19,8 +19,17 @@ The original course launched in the spring of 2012 and even today is useful in h
     1. Elements
 1. Getting to Working - Introducing RESTbugs
     1. Uniform interface constraint means that we can change the server without breaking the client, meaning that we can start without needing a server implementation
+    1. entry point resource
+    1. resource modeling
+    1. data modeling - representation discussion
+    1. cache control headers
+    1. content negotiation, agent-driven
 1. Beyond GET - Mutations
+    1. Scaffolding out a server in Node.js
+    1. Driving workflow through hypermedia - something novel or use hydra?
     1. Add security (OIDC via Auth0) - show how the IdP is an example of code-on-demand
+    1. Optimistic concurrency using conditional requests
+    1. Versioning / lineage
 1. Optimizing for the Cloud
     1. Hot/Cold strategy using cloud storage - show how hypermedia enables client to function seamlessly
 1. A Broader Look // Beyond REST
