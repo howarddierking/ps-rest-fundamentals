@@ -31,11 +31,13 @@ The original course launched in the spring of 2012 and even today is useful in h
     1. Optimistic concurrency using conditional requests
     1. Versioning / lineage
 1. Optimizing for the Cloud
-    1. Hot/Cold strategy using cloud storage - show how hypermedia enables client to function seamlessly
+    1. Optimize for static - show cost differences
+    1. Cloud scale strategies - CSP services enable layered system
 1. A Broader Look // Beyond REST
     1. Duplex channel (HTTP/2)
     1. Event-driven architecture
     1. Overall usability
+    1. Identify the challenges of REST in practice that led to the creation of technologies like GraphQL?
 
 ## Key Takeaways
 * REST describes the entire system - not just APIs
