@@ -10,51 +10,34 @@ The original course launched in the spring of 2012 and even today is useful in h
 * include commentary on my own experience in the last 8 years as an implementer of these ideas
 * introduce some of the principles of linked data as a natural progression of REST
 
-## Builders Pivot
+## Outline
 1. Introduction
+    1. Juxtaposed architectures
+    1. The WWW 
 1. A REST Primer (theory)
+    1. Constraints - what and why
+    1. Elements
 1. Getting to Working - Introducing RESTbugs
+    1. Uniform interface constraint means that we can change the server without breaking the client, meaning that we can start without needing a server implementation
 1. Beyond GET - Mutations
+    1. Add security (OIDC via Auth0) - show how the IdP is an example of code-on-demand
 1. Optimizing for the Cloud
+    1. Hot/Cold strategy using cloud storage - show how hypermedia enables client to function seamlessly
 1. A Broader Look // Beyond REST
+    1. Duplex channel (HTTP/2)
+    1. Event-driven architecture
+    1. Overall usability
 
-## Architectural Pivot
-1. Introduction
-    1. some history
-    1. goals and stuff
-    1. introducing approach for practicum
-1. REST primer
-    1. other architectures considered
-    1. constraints, and challenges addressed by each
-    1. elements of REST
-1. Design for Robustness
-    1. client-server constraint enables client to evolve without breaking server
-    1. uniform interface enables server to evolve without breaking client
-1. Design for scale
-    1. client-server constraint enables growth in number and diversity of clients
-    1. layered system manages complexity in spite of system growth
-1. A changing architectural landscape
-    1. architectural innovations (e.g. EDA)
-    1. impact of cloud computing
-
-## Fielding+Topical Pivot 
-1. Introduction
-1. Client-Server
-1. Stateless
-    1. Security
-1. Cache
-    1. Versioning (tentative: the thinking here is that applying versioning in more novel ways than the resource ID will have an inversely proportional relationship to the cacheability of resources)
-1. Uniform Interface
-    1. Resources
-        1. Resource Design
-    1. Representations
-        1. Which content type to use?
-    1. Self-Describing messages
-    1. Hypermedia
-        1. Documentation (really becomes a discussion about strong vs. generic typing)
-1. Layered System
-1. Code On-Demand
-1. Conclusion
+## Key Takeaways
+* REST describes the entire system - not just APIs
+* URIs are important for providing a stable, globally scoped, unique identifier - they are not important for communicating semantics
+* Optimize for immutable, static resources
+* URIs are cheap. Don't fear minting them.
+* There's an inversely proportionality between cleverness and usability - especially when it comes to using   protocol features. Err on the side of simplicity and expressivity.
+* For most implementations, every change to the representation is a potentially breaking change to the resource. Versions belong in the URI. 
+    * Additionally, more novel ways of versioning (e.g. metadata) only add to caching complexity, which may not be consistently supported by all cache connectors
+* server-driven content negotation should be a convenience on top of agent-driven, but should _never_ be the only option. 
+* "RESTful APIs" (e.g. just the server part of the client-server) often do not yield RESTful systems as they place an often outsized burden on clients. If you have clients that expect to interact with your data as a set of function calls, consider data-forward RPC approaches such as GraphQL.
 
 ## Notes
 * Topics that folks want covered
@@ -66,6 +49,6 @@ The original course launched in the spring of 2012 and even today is useful in h
     * content type selection
     * security (authN/authZ)
 * I would like to talk about the difference between function-orientation and data-orientation
-
-_in general, I'm not super happy with this outline yet (though it follows the original version of the course). Want to explore a strategy of mixing in the practicum with the conceptual more._
-
+* Fun fact - REST was a key part of the early definition of micro-services (2005 Peter Rodgers talk at Web Services Edge conference)
+* Brief mention of components and connectors - both are roles. The difference is that components define the role of a process in the overall system (e.g. user agent, proxy, gateway, etc) while the connector defines the role of the process in a specific network interaction (e.g. client, server, cache)
+* Documentation really becomes a discussion about strong vs. generic typing
