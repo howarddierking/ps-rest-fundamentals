@@ -11,23 +11,24 @@ The original course launched in the spring of 2012 and even today is useful in h
 * introduce some of the principles of linked data as a natural progression of REST
 
 ## Outline
-1. Introduction
+1. Introduction (20 minutes)
     1. Juxtaposed architectures
     1. The WWW 
-1. A REST Primer (theory)
+    1. Creation by constraint - fallacies of distributed computing
+1. A REST Primer (theory) (30 minutes)
     1. Constraints - what and why
     1. Elements
-1. Getting to Working - Introducing RESTbugs
+1. Getting to Working - Introducing RESTbugs (40 minutes - may need to be split between 2 modules)
     1. Uniform interface constraint means that we can change the server without breaking the client, meaning that we can start without needing a server implementation
     1. entry point resource
-    1. resource modeling
+    1. resource modeling - metaphor of the paper trays
     1. data modeling - representation discussion
     1. cache control headers
     1. content negotiation, agent-driven
-1. Beyond GET - Mutations
+1. Beyond GET - Mutations (40 minutes)
     1. Scaffolding out a server in Node.js
-    1. Driving workflow through hypermedia - something novel or use hydra?
     1. Add security (OIDC via Auth0) - show how the IdP is an example of code-on-demand
+    1. Driving workflow through hypermedia - something novel or use hydra?
     1. Optimistic concurrency using conditional requests
     1. Versioning / lineage
 1. Optimizing for the Cloud
