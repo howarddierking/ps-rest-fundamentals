@@ -1,0 +1,25 @@
+{
+    "bugs": [
+        {
+            "id": "1",
+            "title": "first bug",
+            "createdBy": "Howard Dierking",
+            "createdOn": "2014-01-01T23:28:56.782Z",
+            "modifiedOn": "2014-01-01T23:28:56.782Z"
+        },
+        {
+            "id": "2",
+            "title": "second bug",
+            "createdBy": "John Smith",
+            "createdOn": "2014-01-01T23:28:56.782Z",
+            "modifiedOn": "2014-01-01T23:28:56.782Z"
+        },
+        {
+            "id": "3",
+            "title": "third bug",
+            "createdBy": "Jane Doe",
+            "createdOn": "2014-01-01T23:28:56.782Z",
+            "modifiedOn": "2014-01-01T23:28:56.782Z"
+        }
+    ]
+}
