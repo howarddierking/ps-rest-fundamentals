@@ -1,0 +1,13 @@
+{
+    "id": "http://localhost:8080/bugs/open/1.json",
+    "activeFilterStatus": "open",
+    "items": [
+        {
+            "id": "1",
+            "title": "first bug",
+            "createdBy": "Howard Dierking",
+            "createdOn": "2014-01-01T23:28:56.782Z",
+            "modifiedOn": "2014-01-01T23:28:56.782Z"
+        }
+    ]
+}

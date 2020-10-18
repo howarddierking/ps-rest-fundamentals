@@ -1,25 +1,51 @@
 {
-    "bugs": [
-        {
-            "id": "1",
-            "title": "first bug",
-            "createdBy": "Howard Dierking",
-            "createdOn": "2014-01-01T23:28:56.782Z",
-            "modifiedOn": "2014-01-01T23:28:56.782Z"
+    "id": "http://localhost:8080/index.json",
+    "bugsList": {
+        "id": "http://localhost:8080/bugs/all/1.json",
+        "nextPage": "http://localhost:8080/bugs/all/2.json",
+        "activeFilterStatus": "all",
+        "items": [
+            {
+                "id": "1",
+                "title": "first bug",
+                "createdBy": "Howard Dierking",
+                "createdOn": "2014-01-01T23:28:56.782Z",
+                "modifiedOn": "2014-01-01T23:28:56.782Z"
+            },
+            {
+                "id": "2",
+                "title": "second bug",
+                "createdBy": "John Smith",
+                "createdOn": "2014-01-01T23:28:56.782Z",
+                "modifiedOn": "2014-01-01T23:28:56.782Z"
+            },
+            {
+                "id": "3",
+                "title": "third bug",
+                "createdBy": "Jane Doe",
+                "createdOn": "2014-01-01T23:28:56.782Z",
+                "modifiedOn": "2014-01-01T23:28:56.782Z"
+            }
+        ]
+    },
+    "statusFilters": [
+        { 
+            "id": "all",
+            "href": "http://localhost:8080/bugs/all/1.json",
+            "title": "All" 
         },
-        {
-            "id": "2",
-            "title": "second bug",
-            "createdBy": "John Smith",
-            "createdOn": "2014-01-01T23:28:56.782Z",
-            "modifiedOn": "2014-01-01T23:28:56.782Z"
+        { 
+            "id": "open", 
+            "href": "http://localhost:8080/bugs/open/1.json", 
+            "title": "Open" 
         },
-        {
-            "id": "3",
-            "title": "third bug",
-            "createdBy": "Jane Doe",
-            "createdOn": "2014-01-01T23:28:56.782Z",
-            "modifiedOn": "2014-01-01T23:28:56.782Z"
+        { 
+            "id": "closed",
+            "href": "http://localhost:8080/bugs/closed/1.json",
+            "title": "Closed" 
         }
     ]
 }
+
+
+
