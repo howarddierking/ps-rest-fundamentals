@@ -44,6 +44,20 @@
             "href": "http://localhost:8080/bugs/closed/1.json",
             "title": "Closed" 
         }
+    ],
+    "possibleAssignees": [
+        {
+            "id": "http://localhost:8080/user/debf8087-b65f-4135-83d3-2803bd0f8848.json",
+            "fullName": "Howard Dierking"
+        },
+        {
+            "id": "http://localhost:8080/user/cb8f8a5c-de32-43b5-a022-b3f65e313393.json",
+            "fullName": "John Smith"
+        },
+        {
+            "id": "http://localhost:8080/user/8e2438ee-2284-49e6-8d87-1d7943cb5d39.json",
+            "fullName": "Jane Doe"
+        }
     ]
 }
 
