@@ -3,7 +3,7 @@
     "activeFilterStatus": "open",
     "items": [
         {
-            "id": "1",
+            "id": "http://localhost:8080/bug/af7a25df-d47d-49ea-98c8-8866c4b7b4e7.json",
             "title": "first bug",
             "createdBy": "Howard Dierking",
             "createdOn": "2014-01-01T23:28:56.782Z",

@@ -9,6 +9,7 @@ export default function BugsListView(props){
     // initial load comes from props
     const [isLoading, setIsLoading] = useState(false);  
     const [statusFilters, setStatusFilters] = useState(props.statusFilters);
+    
     const [pageId, setPageId] = useState(props.bugsList.id);
     const [bugsList, setBugsList] = useState(props.bugsList);
     const isInitialRender = useRef(true);
