@@ -25,12 +25,20 @@ const mapIndexed = R.addIndex(R.map);
 export default function BugsEditView(props){
     const classes = useStyles();
     
-    const [title, setTitle] = useState(pathOrEmptyString(['selectedBug', 'title'], props));
-    const [description, setDescription] = useState(pathOrEmptyString(['selectedBug', 'description'], props));
-    const [assignedTo, setAssignedTo] = useState(pathOrEmptyString(['selectedBug', 'assignedTo', 'id'], props));
-    const [status, setStatus] = useState(pathOrEmptyString(['selectedBug', 'status', 'id'], props));
-    const [comments, setComments] = useState(pathOrEmptyArray(['selectedBug', 'comments'], props));
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [assignedTo, setAssignedTo] = useState('');
+    const [status, setStatus] = useState('');
+    const [comments, setComments] = useState([]);
     const [commentText, setCommentText] = useState('');
+
+    if(props.selectedBug){
+        setTitle(props.selectedBug.title);
+        setDescription(props.selectedBug.description);
+        setAssignedTo(props.selectedBug.assignedTo.id);
+        setStatus(props.selectedBug.status.id);
+        setComments(props.selectedBug.comments);
+    }
 
     function handleAddComment(e){
         const comment = {
