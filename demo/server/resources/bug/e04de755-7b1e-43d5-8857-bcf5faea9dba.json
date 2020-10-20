@@ -1,0 +1,24 @@
+{
+    "id": "http://localhost:8080/bug/e04de755-7b1e-43d5-8857-bcf5faea9dba.json",
+    "title": "first bug",
+    "description": "lorem ipsum",
+    "createdBy": {
+        "id": "http://localhost:8080/user/debf8087-b65f-4135-83d3-2803bd0f8848.json",
+        "fullName": "Howard Dierking"
+    },
+    "createdOn": "2014-01-01T23:28:56.782Z",
+    "modifiedOn": "2014-01-01T23:28:56.782Z",
+    "status": {
+        "id": "open"
+    },
+    "assignedTo": {
+        "id": "http://localhost:8080/user/debf8087-b65f-4135-83d3-2803bd0f8848.json",
+        "fullName": "Howard Dierking"
+    },
+    "comments": [
+        {
+            "addedOn": "2014-01-01T23:28:56.782Z",
+            "commentText": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        }
+    ]
+}

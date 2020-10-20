@@ -6,21 +6,21 @@
         "activeFilterStatus": "all",
         "items": [
             {
-                "id": "1",
+                "id": "http://localhost:8080/bug/e04de755-7b1e-43d5-8857-bcf5faea9dba.json",
                 "title": "first bug",
                 "createdBy": "Howard Dierking",
                 "createdOn": "2014-01-01T23:28:56.782Z",
                 "modifiedOn": "2014-01-01T23:28:56.782Z"
             },
             {
-                "id": "2",
+                "id": "http://localhost:8080/bug/af7a25df-d47d-49ea-98c8-8866c4b7b4e7.json",
                 "title": "second bug",
                 "createdBy": "John Smith",
                 "createdOn": "2014-01-01T23:28:56.782Z",
                 "modifiedOn": "2014-01-01T23:28:56.782Z"
             },
             {
-                "id": "3",
+                "id": "http://localhost:8080/bug/5f9c7840-0424-4187-9d56-1e6daa2455a7.json",
                 "title": "third bug",
                 "createdBy": "Jane Doe",
                 "createdOn": "2014-01-01T23:28:56.782Z",
