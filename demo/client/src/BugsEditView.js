@@ -18,8 +18,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const pathOrEmptyString = R.pathOr('');
-const pathOrEmptyArray = R.pathOr([]);
 const mapIndexed = R.addIndex(R.map);
 
 export default function BugsEditView(props){
