@@ -9,7 +9,7 @@
     "createdOn": "2014-01-01T23:28:56.782Z",
     "modifiedOn": "2014-01-01T23:28:56.782Z",
     "status": {
-        "id": "open"
+        "id": "http://localhost:8080/statusFilters/open"
     },
     "assignedTo": {
         "id": "http://localhost:8080/user/debf8087-b65f-4135-83d3-2803bd0f8848.json",

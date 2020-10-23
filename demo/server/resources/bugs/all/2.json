@@ -2,7 +2,7 @@
     "id": "http://localhost:8080/bugs/all/2.json",
     "prevPage": "http://localhost:8080/bugs/all/1.json",
     "nextPage": "http://localhost:8080/bugs/all/3.json",
-    "activeFilterStatus": "all",
+    "activeFilterStatus": "http://localhost:8080/statusFilters/all",
     "items": [
         {
             "id": "4",

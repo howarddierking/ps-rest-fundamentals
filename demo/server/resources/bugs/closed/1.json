@@ -1,6 +1,6 @@
 {
     "id": "http://localhost:8080/bugs/closed/1.json",
-    "activeFilterStatus": "closed",
+    "activeFilterStatus": "http://localhost:8080/statusFilters/closed",
     "items": [
         {
             "id": "http://localhost:8080/bug/af7a25df-d47d-49ea-98c8-8866c4b7b4e7.json",

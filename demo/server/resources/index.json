@@ -3,7 +3,7 @@
     "bugsList": {
         "id": "http://localhost:8080/bugs/all/1.json",
         "nextPage": "http://localhost:8080/bugs/all/2.json",
-        "activeFilterStatus": "all",
+        "activeFilterStatus": "http://localhost:8080/statusFilters/all",
         "items": [
             {
                 "id": "http://localhost:8080/bug/e04de755-7b1e-43d5-8857-bcf5faea9dba.json",
@@ -30,17 +30,17 @@
     },
     "statusFilters": [
         { 
-            "id": "all",
+            "id": "http://localhost:8080/statusFilters/all",
             "href": "http://localhost:8080/bugs/all/1.json",
             "title": "All" 
         },
         { 
-            "id": "open", 
+            "id": "http://localhost:8080/statusFilters/open", 
             "href": "http://localhost:8080/bugs/open/1.json", 
             "title": "Open" 
         },
         { 
-            "id": "closed",
+            "id": "http://localhost:8080/statusFilters/closed",
             "href": "http://localhost:8080/bugs/closed/1.json",
             "title": "Closed" 
         }
