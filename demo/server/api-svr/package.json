@@ -1,0 +1,18 @@
+{
+  "name": "api-svr",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "HOST=http://localhost:8080 node ./bin/www",
+    "start-debug": "HOST=http://localhost:8080 node inspect ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "hbs": "~4.0.4",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "ramda": "^0.27.1"
+  }
+}
