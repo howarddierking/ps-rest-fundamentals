@@ -45,9 +45,19 @@ export default function BugsListView(props){
     } else {
         return (
             <Box>
-                <StatusSelector onSelectorChange={handleFilterChange} activeFilterStatus={bugsList.activeFilterStatus} statusFilters={statusFilters}/>
-                <BugsTable bugs={bugsList.items} onBugSelected={props.onBugSelected} />
-                <BugsTablePager onPage={handlePage} prev={bugsList.prevPage} next={bugsList.nextPage} />
+                <StatusSelector 
+                    onSelectorChange={handleFilterChange} 
+                    activeFilterStatus={bugsList.activeFilterStatus} 
+                    statusFilters={statusFilters}/>
+
+                <BugsTable 
+                    bugs={bugsList.items} 
+                    onBugSelected={props.onBugSelected} />
+                    
+                <BugsTablePager 
+                    onPage={handlePage} 
+                    prev={bugsList.prevPage} 
+                    next={bugsList.nextPage} />
             </Box>
         )
     }
