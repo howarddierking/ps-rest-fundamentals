@@ -1,0 +1,246 @@
+{
+    "ps-rest-fun-BugsTable-DD9C5FSPL571": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "e04de755-7b1e-43d5-8857-bcf5faea9dba"},
+                    "title": {"S": "something isn't working"},
+                    "description": {"S": "lorem ipsum"},
+                    "createdBy": {"S": "debf8087-b65f-4135-83d3-2803bd0f8848"},
+                    "createdOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "modifiedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "status": {"S": "http://localhost:8080/status/open"},
+                    "assignedTo": {"S": "debf8087-b65f-4135-83d3-2803bd0f8848"},
+                    "comments": {
+                        "L": [
+                            {
+                                "M": {
+                                    "addedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                                    "commentText": {"S": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "af7a25df-d47d-49ea-98c8-8866c4b7b4e7"},
+                    "title": {"S": "website is slow"},
+                    "description": {"S": "lorem ipsum"},
+                    "createdBy": {"S": "fc015a92-9cbd-439a-8e32-ca19be068ca1"},
+                    "createdOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "modifiedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "status": {"S": "http://localhost:8080/status/open"},
+                    "assignedTo": {"S": "fc015a92-9cbd-439a-8e32-ca19be068ca1"},
+                    "comments": {
+                        "L": [
+                            {
+                                "M": {
+                                    "addedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                                    "commentText": {"S": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "546e7510-6743-4642-a730-5d36cdc85bcf"},
+                    "title": {"S": "turn off and back on again?"},
+                    "description": {"S": "lorem ipsum"},
+                    "createdBy": {"S": "1bb2e78b-5859-49a9-a221-cfc55a32d326"},
+                    "createdOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "modifiedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "status": {"S": "http://localhost:8080/status/open"},
+                    "assignedTo": {"S": "1bb2e78b-5859-49a9-a221-cfc55a32d326"},
+                    "comments": {
+                        "L": [
+                            {
+                                "M": {
+                                    "addedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                                    "commentText": {"S": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "2bce7626-f41f-4c65-ba97-0e5bffcabd9a"},
+                    "title": {"S": "out of memory exception"},
+                    "description": {"S": "lorem ipsum"},
+                    "createdBy": {"S": "debf8087-b65f-4135-83d3-2803bd0f8848"},
+                    "createdOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "modifiedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "status": {"S": "http://localhost:8080/status/open"},
+                    "assignedTo": {"S": "debf8087-b65f-4135-83d3-2803bd0f8848"},
+                    "comments": {
+                        "L": [
+                            {
+                                "M": {
+                                    "addedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                                    "commentText": {"S": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "438abf4d-0532-4859-9a34-14d0e8b4353d"},
+                    "title": {"S": "should I defrag?"},
+                    "description": {"S": "lorem ipsum"},
+                    "createdBy": {"S": "fc015a92-9cbd-439a-8e32-ca19be068ca1"},
+                    "createdOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "modifiedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "status": {"S": "http://localhost:8080/status/open"},
+                    "assignedTo": {"S": "fc015a92-9cbd-439a-8e32-ca19be068ca1"},
+                    "comments": {
+                        "L": [
+                            {
+                                "M": {
+                                    "addedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                                    "commentText": {"S": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "240b39ba-117a-4ff0-832b-8e7a9f751e25"},
+                    "title": {"S": "stack dump for 0x00000001"},
+                    "description": {"S": "lorem ipsum"},
+                    "createdBy": {"S": "1bb2e78b-5859-49a9-a221-cfc55a32d326"},
+                    "createdOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "modifiedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "status": {"S": "http://localhost:8080/status/open"},
+                    "assignedTo": {"S": "1bb2e78b-5859-49a9-a221-cfc55a32d326"},
+                    "comments": {
+                        "L": [
+                            {
+                                "M": {
+                                    "addedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                                    "commentText": {"S": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "8395b910-71fc-4e19-914f-d999b6d0499d"},
+                    "title": {"S": "PC Load Letter?"},
+                    "description": {"S": "lorem ipsum"},
+                    "createdBy": {"S": "debf8087-b65f-4135-83d3-2803bd0f8848"},
+                    "createdOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "modifiedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "status": {"S": "http://localhost:8080/status/open"},
+                    "assignedTo": {"S": "debf8087-b65f-4135-83d3-2803bd0f8848"},
+                    "comments": {
+                        "L": [
+                            {
+                                "M": {
+                                    "addedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                                    "commentText": {"S": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "051bc6cd-ceb1-475c-92e7-cb5596647084"},
+                    "title": {"S": "cup holder disappeared into the machine"},
+                    "description": {"S": "lorem ipsum"},
+                    "createdBy": {"S": "fc015a92-9cbd-439a-8e32-ca19be068ca1"},
+                    "createdOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "modifiedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "status": {"S": "http://localhost:8080/status/open"},
+                    "assignedTo": {"S": "fc015a92-9cbd-439a-8e32-ca19be068ca1"},
+                    "comments": {
+                        "L": [
+                            {
+                                "M": {
+                                    "addedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                                    "commentText": {"S": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "6712960b-6240-482a-a452-45e30b402470"},
+                    "title": {"S": "smoke coming out of computer? problem?"},
+                    "description": {"S": "lorem ipsum"},
+                    "createdBy": {"S": "1bb2e78b-5859-49a9-a221-cfc55a32d326"},
+                    "createdOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "modifiedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                    "status": {"S": "http://localhost:8080/status/open"},
+                    "assignedTo": {"S": "1bb2e78b-5859-49a9-a221-cfc55a32d326"},
+                    "comments": {
+                        "L": [
+                            {
+                                "M": {
+                                    "addedOn": {"S": "2014-01-01T23:28:56.782Z"},
+                                    "commentText": {"S": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ], 
+    "ps-rest-fun-UsersTable-1IGDLRAZMAB3E": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "debf8087-b65f-4135-83d3-2803bd0f8848"},
+                    "fullName": {"S": "Howard Dierking"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "fc015a92-9cbd-439a-8e32-ca19be068ca1"},
+                    "fullName": {"S": "John Smith"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {"S": "1bb2e78b-5859-49a9-a221-cfc55a32d326"},
+                    "fullName": {"S": "Jane Doe"}
+                }
+            }
+        }
+    ]
+}

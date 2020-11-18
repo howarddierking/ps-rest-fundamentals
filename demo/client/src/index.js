@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'
 
-const indexResourceId = 'http://localhost:8080/index.json';
+const indexResourceId = 'http://localhost:8080/';
 
 // load the index resource
 fetch(indexResourceId, { method: 'GET' })

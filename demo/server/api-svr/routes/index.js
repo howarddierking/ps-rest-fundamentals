@@ -1,82 +1,76 @@
-const express = require('express');
-const router = express.Router();
 const R = require('ramda');
+const bugsLib = require('../lib/bugs');
+const usersLib = require('../lib/users');
 
-const writeId = R.curry((host, relative) => {
-    const u = new URL(relative, host);
-    return u.toString();
-});
+/* GET home resource */
+exports.getRoot = R.curry((linkBuilder, dbConnection, req, res, next) => {
+    const pageNumber = 0;
+    const pageSize = 3;
 
-const writeIdFromRelative = writeId(process.env.HOST);
+    bugsLib.getBugsPage(dbConnection, pageSize, pageNumber)
+    .then(results => {
+        debugger;
 
-const resource = {
-    id: writeIdFromRelative('/index.json'),
-    bugsList: {
-        id: writeIdFromRelative('/bugs/all/1.json'),
-        nextPage: writeIdFromRelative('/bugs/all/2.json'),
-        activeFilterStatus: writeIdFromRelative('/statusFilters/all'),
-        items: [
-            {
-                id: writeIdFromRelative('/bug/e04de755-7b1e-43d5-8857-bcf5faea9dba.json'),
-                title: 'first bug',
-                createdBy: 'Howard Dierking',
-                createdOn: '2014-01-01T23:28:56.782Z',
-                modifiedOn: '2014-01-01T23:28:56.782Z'
+        // add bugs first page
+        let bugsList = {
+            id: linkBuilder.addSegment('bugs').addSegment(pageNumber).toString(),
+            activeFilterStatus: "http://localhost:8080/statusFilters/all",
+            items: R.map(r => {
+                return {
+                    id: linkBuilder.addSegment('bug').addSegment(r.bugGuid).toString(),
+                    title: r.title,
+                    createdBy: r.createdBy,
+                    createdOn: r.createdOn,
+                    modifiedOn: r.modifiedOn
+                }
+            }, results.items)
+        };
+
+        if(pageNumber > 0){
+            bugsList = R.assoc('prevPage', linkBuilder.addSegment('bugs').addSegment(pageNumber - 1).toString(), bugsList);
+        }
+        if(results.moreItems){
+            bugsList = R.assoc('nextPage', linkBuilder.addSegment('bugs').addSegment(pageNumber + 1).toString(), bugsList);   
+        }
+
+        // add possible filters
+        const statusFilters = [
+            { 
+                id: "http://localhost:8080/statusFilters/all",
+                href: "http://localhost:8080/bugs/all/1.json",
+                title: "All" 
             },
-            {
-                id: writeIdFromRelative('/bug/af7a25df-d47d-49ea-98c8-8866c4b7b4e7.json'),
-                title: 'second bug',
-                createdBy: 'John Smith',
-                createdOn: '2014-01-01T23:28:56.782Z',
-                modifiedOn: '2014-01-01T23:28:56.782Z'
+            { 
+                id: "http://localhost:8080/statusFilters/open", 
+                href: "http://localhost:8080/bugs/open/1.json", 
+                title: "Open" 
             },
-            {
-                id: writeIdFromRelative('/bug/5f9c7840-0424-4187-9d56-1e6daa2455a7.json'),
-                title: 'third bug',
-                createdBy: 'Jane Doe',
-                createdOn: '2014-01-01T23:28:56.782Z',
-                modifiedOn: '2014-01-01T23:28:56.782Z'
+            { 
+                id: "http://localhost:8080/statusFilters/closed",
+                href: "http://localhost:8080/bugs/closed/1.json",
+                title: "Closed" 
             }
-        ]
-    },
-    statusFilters: [
-        { 
-            id: writeIdFromRelative('/statusFilters/all'),
-            href: writeIdFromRelative('/bugs/all/1.json'),
-            title: 'All' 
-        },
-        { 
-            id: writeIdFromRelative('/statusFilters/open'), 
-            href: writeIdFromRelative('/bugs/open/1.json'), 
-            title: 'Open' 
-        },
-        { 
-            id: writeIdFromRelative('/statusFilters/closed'),
-            href: writeIdFromRelative('/bugs/closed/1.json'),
-            title: 'Closed' 
-        }
-    ],
-    possibleAssignees: [
-        {
-            id: writeIdFromRelative('/user/debf8087-b65f-4135-83d3-2803bd0f8848.json'),
-            fullName: 'Howard Dierking'
-        },
-        {
-            id: writeIdFromRelative('/user/cb8f8a5c-de32-43b5-a022-b3f65e313393.json'),
-            fullName: 'John Smith'
-        },
-        {
-            id: writeIdFromRelative('/user/8e2438ee-2284-49e6-8d87-1d7943cb5d39.json'),
-            fullName: 'Jane Doe'
-        }
-    ]
-};
+        ];
 
+        // add possible assignees
+        usersLib.getAllUsers(dbConnection)
+        .then(userResults => {
+            const possibleAssignees = R.map(u => {
+                return {
+                    id: linkBuilder.addSegment('user').addSegment(u.userGuid).toString(),
+                    fullName: u.fullName
+                }
+            }, userResults.items);
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    debugger
-  res.json(resource);
+            // combine results and return
+            const ret = {
+                id: linkBuilder.addSegment('/').toString(),
+                bugsList,
+                statusFilters,
+                possibleAssignees
+            };
+
+            res.json(ret);
+        });
+    });
 });
-
-module.exports = router;
