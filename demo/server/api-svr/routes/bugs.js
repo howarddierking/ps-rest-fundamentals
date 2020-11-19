@@ -7,8 +7,6 @@ exports.getPage = R.curry((linkBuilder, dbConnection, req, res, next) => {
     
     bugsLib.getBugsPage(dbConnection, pageSize, pageNumber)
     .then(results => {
-        debugger;
-
         let ret = {
             id: linkBuilder.addSegment('bugs').addSegment(pageNumber).toString(),
             activeFilterStatus: "http://localhost:8080/statusFilters/all",

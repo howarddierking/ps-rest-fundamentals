@@ -9,8 +9,6 @@ exports.getRoot = R.curry((linkBuilder, dbConnection, req, res, next) => {
 
     bugsLib.getBugsPage(dbConnection, pageSize, pageNumber)
     .then(results => {
-        debugger;
-
         // add bugs first page
         let bugsList = {
             id: linkBuilder.addSegment('bugs').addSegment(pageNumber).toString(),

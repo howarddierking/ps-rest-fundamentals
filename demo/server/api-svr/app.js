@@ -16,7 +16,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
-    res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.set('Access-Control-Allow-Origin', process.env['CORS_ALLOW_ORIGIN']);
+    res.set('Access-Control-Allow-Methods', 'POST, GET, PUT, OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
 
@@ -34,6 +36,7 @@ const linkBuilder = links.builder(process.env['API_SVR_HOST']);
 // routes
 app.get('/', indexRoutes.getRoot(linkBuilder, connection));
 app.get('/bugs/:pagekey', bugsRoutes.getPage(linkBuilder, connection));
-app.get('/bug/:bugid', bugRoutes.getPage(linkBuilder, connection));
+app.get('/bug/:bugid', bugRoutes.getBug(linkBuilder, connection));
+app.post('/bug/:bugid', bugRoutes.postBug(linkBuilder, connection));
 
 module.exports = app;

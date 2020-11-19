@@ -28,7 +28,9 @@ export default function BugsEditView(props){
     const [assignedTo, setAssignedTo] = useState('');
     const [status, setStatus] = useState('');
     const [comments, setComments] = useState([]);
+    const [createdOn, setCreatedOn] = useState('');
     const [commentText, setCommentText] = useState('');
+
     const isInitialRender = useRef(true);
     const [showEditPane, setShowEditPane] = useState(false);
 
@@ -48,6 +50,7 @@ export default function BugsEditView(props){
                     setStatus(rep.status.id);
                     setComments(rep.comments);
                     setShowEditPane(true);
+                    setCreatedOn(rep.createdOn);
                 })
                 .catch(err => console.log(err));
         }        
@@ -87,11 +90,48 @@ export default function BugsEditView(props){
         setDescription(e.target.value);
     }
 
-    function handleAddSave(e){
+    async function handleAddSave(e){
+        debugger
+        const now = new Date().toISOString();
+
         if(showEditPane){
-            console.info('Save button clicked');
-            setShowEditPane(false);
+            let rep = {
+                id: props.selectedBugId,
+                title: title,
+                createdBy: {
+                    id: "http://localhost:8080/user/156cb024-e3e4-44c7-bd7a-c6639f989060"   // TODO: fix once authentication is in place
+                },
+                createdOn: props.selectedBugId ? createdOn : now,
+                modifiedOn: now,
+                assignedTo: assignedTo,
+                status: status,
+                comments: comments
+            };
+
+            if(props.selectedBugId){
+                console.info('update');
+
+                const fetchProperties = {
+                    method: 'POST', 
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(rep)
+                };
+
+                await fetch(props.selectedBugId, fetchProperties);
+                
+                console.info('update complete');
+                setShowEditPane(false);
+                    
+            } else {
+                console.info('add');
+            }
+
+            
         } else {
+            // open the edit pane
             setShowEditPane(true);
         }
     }
