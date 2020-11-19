@@ -91,16 +91,12 @@ export default function BugsEditView(props){
     }
 
     async function handleAddSave(e){
-        debugger
         const now = new Date().toISOString();
 
         if(showEditPane){
             let rep = {
-                id: props.selectedBugId,
                 title: title,
-                createdBy: {
-                    id: "http://localhost:8080/user/156cb024-e3e4-44c7-bd7a-c6639f989060"   // TODO: fix once authentication is in place
-                },
+                createdBy: "http://localhost:8080/user/156cb024-e3e4-44c7-bd7a-c6639f989060",   // TODO: fix once authentication is in place
                 createdOn: props.selectedBugId ? createdOn : now,
                 modifiedOn: now,
                 assignedTo: assignedTo,
@@ -109,26 +105,21 @@ export default function BugsEditView(props){
             };
 
             if(props.selectedBugId){
-                console.info('update');
-
-                const fetchProperties = {
-                    method: 'POST', 
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(rep)
-                };
-
-                await fetch(props.selectedBugId, fetchProperties);
-                
-                console.info('update complete');
-                setShowEditPane(false);
-                    
-            } else {
-                console.info('add');
+                rep = R.assoc('id', props.selectedBugId, rep);
             }
 
+            const fetchProperties = {
+                method: props.selectedBugId ? 'PUT' : 'POST', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(rep)
+            };
+
+            const requestLink = props.selectedBugId || props.bugsCollectionId;
+            await fetch(requestLink, fetchProperties);  
+
+            setShowEditPane(false);
             
         } else {
             // open the edit pane

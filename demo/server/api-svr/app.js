@@ -36,7 +36,8 @@ const linkBuilder = links.builder(process.env['API_SVR_HOST']);
 // routes
 app.get('/', indexRoutes.getRoot(linkBuilder, connection));
 app.get('/bugs/:pagekey', bugsRoutes.getPage(linkBuilder, connection));
+app.post('/bugs', bugsRoutes.postBug(connection));
 app.get('/bug/:bugid', bugRoutes.getBug(linkBuilder, connection));
-app.post('/bug/:bugid', bugRoutes.postBug(linkBuilder, connection));
+app.put('/bug/:bugid', bugRoutes.putBug(linkBuilder, connection));
 
 module.exports = app;

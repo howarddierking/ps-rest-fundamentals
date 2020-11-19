@@ -65,7 +65,8 @@ exports.getRoot = R.curry((linkBuilder, dbConnection, req, res, next) => {
                 id: linkBuilder.addSegment('/').toString(),
                 bugsList,
                 statusFilters,
-                possibleAssignees
+                possibleAssignees,
+                bugsCollectionId: linkBuilder.addSegment('bugs').toString()
             };
 
             res.json(ret);
