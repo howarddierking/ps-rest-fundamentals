@@ -58,69 +58,7 @@
             "id": "http://localhost:8080/user/8e2438ee-2284-49e6-8d87-1d7943cb5d39.json",
             "fullName": "Jane Doe"
         }
-    ],
-    "defaultAddBugForm": {
-        "id": "http://localhost:8080/form/faf2854b-bb58-4d18-883a-6a09af9fc21d",
-        "method": "POST",
-        "action": "http://localhost:8080/bugs",
-        "schema": {
-            "$id": "http://localhost:8080/schema/bug-add.schema.json",
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "createdBy": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "createdOn": {
-                    "type": "string"
-                },
-                "modifiedOn": {
-                    "type": "string"
-                },
-                "assignedTo": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "status": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "comments": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "addedOn": {
-                                "type": "string"
-                            },
-                            "commentText": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    ]
 }
 
 

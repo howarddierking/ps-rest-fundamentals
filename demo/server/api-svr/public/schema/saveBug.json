@@ -1,0 +1,57 @@
+{    
+    "$id": "http://localhost:8080/schema/bug-add.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string"
+        },
+        "createdBy": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdOn": {
+            "type": "string"
+        },
+        "modifiedOn": {
+            "type": "string"
+        },
+        "assignedTo": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "status": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "comments": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "addedOn": {
+                        "type": "string"
+                    },
+                    "commentText": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

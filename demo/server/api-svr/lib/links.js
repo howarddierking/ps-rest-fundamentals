@@ -1,5 +1,7 @@
 const R = require('ramda');
 
+const lastSegment = exports.lastSegment = R.pipe(R.split('/'), R.last);
+
 // writer: String -> [String] -> String
 const writer = exports.writer = R.curry((host, segments) => {
     // if there's just one argment, assume it's a FQ URL 

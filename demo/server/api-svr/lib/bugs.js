@@ -9,6 +9,8 @@ const getBugsPage = exports.getBugsPage = R.curry((connection, pageSize, pageNum
     from bugs as b 
     inner join users as u 
         on b.createdBy=u.userGuid
+    where b.bugGuid not in (select wasDerivedFrom from bugs where wasDerivedFrom is not null)
+    order by b.modifiedOn desc
     limit ${pageSize + 1}
     offset ${pageNumber * pageSize}`;
 

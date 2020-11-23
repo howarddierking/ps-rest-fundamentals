@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const path = require('path');
 const logger = require('morgan');
 const links = require('./lib/links');
 const R = require('ramda');
@@ -15,6 +16,7 @@ const app = express();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
     res.set('Access-Control-Allow-Origin', process.env['CORS_ALLOW_ORIGIN']);
     res.set('Access-Control-Allow-Methods', 'POST, GET, PUT, OPTIONS');

@@ -36,16 +36,6 @@ INSERT INTO bugs (bugGuid, title, description, createdBy, createdOn, modifiedOn,
 INSERT INTO bugs (bugGuid, title, description, createdBy, createdOn, modifiedOn, status, assignedTo) values ("a024ffd3-7b17-4e40-823b-ebe25734c3a3", "cup holder disappeared into the machine", "lorem ipsum", "cebf68c3-ac9f-40a6-9541-8cf243b32ef9", "1999-04-012 10:10:10", "2000-04-012 10:10:10", "open", "cebf68c3-ac9f-40a6-9541-8cf243b32ef9");
 INSERT INTO bugs (bugGuid, title, description, createdBy, createdOn, modifiedOn, status, assignedTo) values ("17827f2c-afa6-4289-b297-437d9d429678", "smoke coming out of computer? problem?", "lorem ipsum", "136a2252-38a3-47f0-8a38-01427dd3f047", "2000-04-012 10:10:10", "2000-04-012 10:10:10", "open", "136a2252-38a3-47f0-8a38-01427dd3f047");
 
-
-SELECT b.bugGuid, b.title, u.fullName createdBy, u2.fullName assignedTo
-    FROM bugs AS b 
-    INNER JOIN users AS u ON b.createdBy=u.userGuid
-    INNER JOIN users AS u2 ON b.assignedTo=u2.userGuid ;
-
-
-
-
-
 CREATE TABLE comments (
     commentId INT NOT NULL AUTO_INCREMENT,
     bugGuid VARCHAR(36) NOT NULL,
@@ -53,3 +43,26 @@ CREATE TABLE comments (
     commentText VARCHAR(2048),
     PRIMARY KEY(commentId)
 );
+
+
+ALTER TABLE bugs
+ADD COLUMN wasDerivedFrom VARCHAR(36);
+
+
+-- some queries to test things out
+
+SELECT b.bugGuid,
+    b.wasDerivedFrom,
+    b.title,
+    u.fullName createdBy,
+    u2.fullName assignedTo
+FROM bugs AS b 
+INNER JOIN users AS u 
+    ON b.createdBy=u.userGuid
+INNER JOIN users AS u2 
+    ON b.assignedTo=u2.userGuid 
+WHERE b.bugGuid NOT IN (
+    SELECT wasDerivedFrom FROM bugs WHERE wasDerivedFrom IS NOT NULL
+);
+
+

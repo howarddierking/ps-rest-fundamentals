@@ -66,7 +66,13 @@ exports.getRoot = R.curry((linkBuilder, dbConnection, req, res, next) => {
                 bugsList,
                 statusFilters,
                 possibleAssignees,
-                bugsCollectionId: linkBuilder.addSegment('bugs').toString()
+                addBug: {
+                  id: linkBuilder.addSegment('bugs').toString(),
+                  method: 'POST',
+                  shape: {
+                    id: linkBuilder.addSegment('schema').addSegment('saveBug.json').toString()
+                  }
+                } 
             };
 
             res.json(ret);

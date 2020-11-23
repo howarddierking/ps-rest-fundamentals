@@ -19,7 +19,7 @@ export default function ListEditView(props){
 
             <BugsEditView 
                 selectedBugId={selectedBugId}
-                bugsCollectionId={props.apiIndex.bugsCollectionId} 
+                addBugControl={props.apiIndex.addBug} 
                 statusFilters={props.apiIndex.statusFilters} 
                 possibleAssignees={props.apiIndex.possibleAssignees} />
         </Box>

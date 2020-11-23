@@ -23,6 +23,7 @@ const mapIndexed = R.addIndex(R.map);
 export default function BugsEditView(props){
     // NOTE: hooks should come before other component code
 
+    const [bugId, setBugId] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [assignedTo, setAssignedTo] = useState('');
@@ -30,9 +31,10 @@ export default function BugsEditView(props){
     const [comments, setComments] = useState([]);
     const [createdOn, setCreatedOn] = useState('');
     const [commentText, setCommentText] = useState('');
+    const [saveControl, setSaveControl] = useState(props.addBugControl);
 
     const isInitialRender = useRef(true);
-    const [showEditPane, setShowEditPane] = useState(false);
+    const [editing, setEditing] = useState(false);
 
     useEffect(() => {
         if(isInitialRender.current){
@@ -44,13 +46,15 @@ export default function BugsEditView(props){
             fetch(props.selectedBugId, { method: 'GET' })
                 .then(res => res.json())
                 .then(rep => {
+                    setBugId(rep.id);
                     setTitle(rep.title);
                     setDescription(rep.description);
                     setAssignedTo(rep.assignedTo.id);
                     setStatus(rep.status.id);
                     setComments(rep.comments);
-                    setShowEditPane(true);
+                    setEditing(true);
                     setCreatedOn(rep.createdOn);
+                    setSaveControl(rep.updateBug);
                 })
                 .catch(err => console.log(err));
         }        
@@ -90,48 +94,64 @@ export default function BugsEditView(props){
         setDescription(e.target.value);
     }
 
+    function resetEditPane(){
+        setTitle('');
+        setDescription('');
+        setAssignedTo('');
+        setStatus('');
+        setComments([]);
+        setCreatedOn('');
+        setBugId('');
+        setSaveControl(props.addBugControl);
+    }
+
     async function handleAddSave(e){
         const now = new Date().toISOString();
 
-        if(showEditPane){
+        if(editing){
             let rep = {
                 title: title,
-                createdBy: "http://localhost:8080/user/156cb024-e3e4-44c7-bd7a-c6639f989060",   // TODO: fix once authentication is in place
-                createdOn: props.selectedBugId ? createdOn : now,
+                description: description,
+                createdBy: {
+                    id:  "http://localhost:8080/user/156cb024-e3e4-44c7-bd7a-c6639f989060"   // TODO: fix once authentication is in place
+                },
+                createdOn: bugId ? createdOn : now,
                 modifiedOn: now,
-                assignedTo: assignedTo,
-                status: status,
+                assignedTo: {
+                    id: assignedTo
+                },
+                status: {
+                    id: status
+                },
                 comments: comments
             };
 
-            if(props.selectedBugId){
-                rep = R.assoc('id', props.selectedBugId, rep);
+            if(bugId){
+                rep = R.assoc('id', bugId, rep);
             }
 
             const fetchProperties = {
-                method: props.selectedBugId ? 'PUT' : 'POST', 
+                method: saveControl.method, 
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(rep)
             };
 
-            const requestLink = props.selectedBugId || props.bugsCollectionId;
-            await fetch(requestLink, fetchProperties);  
+            await fetch(saveControl.id, fetchProperties);  
 
-            setShowEditPane(false);
-            
-        } else {
-            // open the edit pane
-            setShowEditPane(true);
-        }
+            resetEditPane();
+        } 
+
+        // toggle editing visibility
+        setEditing(!editing);
     }
 
     return (
         <Box>
-            <Button variant="contained" color="primary" onClick={handleAddSave}>{showEditPane ? 'Save' : 'Add New Bug'}</Button>
+            <Button variant="contained" color="primary" onClick={handleAddSave}>{editing ? 'Save' : 'Add New Bug'}</Button>
 
-            <Grid container style={{visibility: showEditPane ? 'visible': 'hidden'}}>
+            <Grid container style={{visibility: editing ? 'visible': 'hidden'}}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper} elevation={0} >
                         <TextField 
