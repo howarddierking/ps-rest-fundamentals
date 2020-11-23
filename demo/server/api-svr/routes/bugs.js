@@ -1,7 +1,6 @@
 const R = require('ramda');
 const bugsLib = require('../lib/bugs');
 const bugLib = require('../lib/bug');
-const dbutils = require('../lib/db');
 
 exports.getPage = R.curry((linkBuilder, dbConnection, req, res, next) => {
     const pageNumber = parseInt(req.params.pagekey);
@@ -35,11 +34,7 @@ exports.getPage = R.curry((linkBuilder, dbConnection, req, res, next) => {
 });
 
 exports.postBug = R.curry((dbConnection, req, res, next) => {
-    // create the representation for persistence
-    // TODO: add comments
-    const rep = dbutils.getDbRep(req.body);
-
-    bugLib.saveBug(dbConnection, rep)
+    bugLib.saveBug(dbConnection, req.body)
     .then(() => {
         res.status(200).send();
     })

@@ -1,5 +1,25 @@
 const R = require('ramda');
 const { v4: uuidv4 } = require('uuid');
+const dbutils = require('./db');
+const links = require('./links');
+
+getDbRep = exports.getDbRep = representation => {
+    let ret = {
+        title: representation.title,
+        description: representation.description,
+        createdBy: links.lastSegment(representation.createdBy.id),
+        createdOn: dbutils.getMySqlDateFormat(representation.createdOn),
+        modifiedOn: dbutils.getMySqlDateFormat(representation.modifiedOn),
+        status: links.lastSegment(representation.status.id),
+        assignedTo: links.lastSegment(representation.assignedTo.id)
+    };
+
+    if(representation.id){
+        ret = R.assoc('id', links.lastSegment(representation.id), ret);
+    }
+
+    return ret;
+}
 
 const getBug = exports.getBug = (connection, bugGuid) => {
     const bugQuery = `select b.bugGuid,
@@ -132,10 +152,14 @@ const incrementBug = (connection, representation) => {
 
 
 const saveBug = exports.saveBug = async (connection, representation) => {
-    if(representation.id){
-        // return await updateBug(connection, representation);
-        return await incrementBug(connection, representation);
+    // create the entity for persistence
+    // TODO: add comments
+    const entity = getDbRep(representation);
+
+    if(entity.id){
+        // return await updateBug(connection, entity);
+        return await incrementBug(connection, entity);
     } else {
-        return await createBug(connection, representation);
+        return await createBug(connection, entity);
     }
 }
