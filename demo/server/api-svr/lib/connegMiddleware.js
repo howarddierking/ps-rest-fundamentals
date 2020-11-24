@@ -73,5 +73,8 @@ const negotiate = exports.negotiate = (req, res, next) => {
         })
     }, otherSupportedContentTypes);
 
+    // set the response content type
+    res.set('Content-Type', selectedContentTypeInfo.contentType);
+
     next();
 };
