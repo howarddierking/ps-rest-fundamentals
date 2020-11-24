@@ -1,46 +1,54 @@
 const R = require('ramda');
 const bugLib = require('../lib/bug');
 
-exports.getBug = R.curry((linkBuilder, dbConnection, req, res, next) => {
+exports.getBug = R.curry((dbConnection, req, res, next) => {
     const bugGuid = req.params.bugid;
+    const lb = res.linkBuilder;
     
     bugLib.getBug(dbConnection, bugGuid)
     .then(results => {
         const b = results.bug;
 
         let ret = {
-            id: linkBuilder.addSegment('bug').addSegment(b.bugGuid).toString(),  
-            wasDerivedFrom: linkBuilder.addSegment('bug').addSegment(b.wasDerivedFrom).toString(),      
+            id: lb.addSegment('bug').addSegment(b.bugGuid).toString(),  
             title: b.title,
             description: b.description,
             createdBy: {
-                id: linkBuilder.addSegment('user').addSegment(b.createdById).toString(),
+                id: lb.addSegment('user').addSegment(b.createdById).toString(),
                 fullName: b.createdByName
             },
             createdOn: b.createdOn,
             modifiedOn: b.modifiedOn,
             assignedTo: {
-                id: linkBuilder.addSegment('user').addSegment(b.assignedToId).toString(),
+                id: lb.addSegment('user').addSegment(b.assignedToId).toString(),
                 fullName: b.assignedToName
             },
             status: {
-                id: linkBuilder.addSegment('statusFilters').addSegment(b.status).toString()
+                id: lb.addSegment('statusFilters').addSegment(b.status).toString()
             },
             comments: results.comments,
             updateBug: {
-                id: linkBuilder.addSegment('bug').addSegment(b.bugGuid).toString(),
+                id: lb.addSegment('bug').addSegment(b.bugGuid).toString(),
                 method: 'PUT',
                 shape: {
-                    id: linkBuilder.addSegment('schema').addSegment('saveBug.json').toString()
+                    id: lb.addSegment('schema').addSegment('saveBug.json').toString()   // note that this may be relevant only to a content type
                 }
             }
         };
 
-        res.json(ret);
+        if(b.wasDerivedFrom){
+            wasDerivedFrom = {
+                id: lb.addSegment('bug').addSegment(b.wasDerivedFrom).toString()
+            };
+
+            ret = R.assoc('wasDerivedFrom', wasDerivedFrom, ret);
+        }
+
+        res.json(res.representationBuilder(ret));
     });
 });
 
-exports.putBug = R.curry((linkBuilder, dbConnection, req, res, next) => {
+exports.putBug = R.curry((dbConnection, req, res, next) => {
     console.info(req.body);
 
     bugLib.saveBug(dbConnection, req.body)

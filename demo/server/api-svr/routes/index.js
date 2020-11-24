@@ -3,19 +3,20 @@ const bugsLib = require('../lib/bugs');
 const usersLib = require('../lib/users');
 
 /* GET home resource */
-exports.getRoot = R.curry((linkBuilder, dbConnection, req, res, next) => {
+exports.getRoot = R.curry((dbConnection, req, res, next) => {
     const pageNumber = 0;
     const pageSize = 3;
+    const lb = res.linkBuilder;
 
     bugsLib.getBugsPage(dbConnection, pageSize, pageNumber)
     .then(results => {
         // add bugs first page
         let bugsList = {
-            id: linkBuilder.addSegment('bugs').addSegment(pageNumber).toString(),
+            id: lb.addSegment('bugs').addSegment(pageNumber).toString(),
             activeFilterStatus: "http://localhost:8080/statusFilters/all",
             items: R.map(r => {
                 return {
-                    id: linkBuilder.addSegment('bug').addSegment(r.bugGuid).toString(),
+                    id: lb.addSegment('bug').addSegment(r.bugGuid).toString(),
                     title: r.title,
                     createdBy: r.createdBy,
                     createdOn: r.createdOn,
@@ -25,10 +26,10 @@ exports.getRoot = R.curry((linkBuilder, dbConnection, req, res, next) => {
         };
 
         if(pageNumber > 0){
-            bugsList = R.assoc('prevPage', linkBuilder.addSegment('bugs').addSegment(pageNumber - 1).toString(), bugsList);
+            bugsList = R.assoc('prevPage', lb.addSegment('bugs').addSegment(pageNumber - 1).toString(), bugsList);
         }
         if(results.moreItems){
-            bugsList = R.assoc('nextPage', linkBuilder.addSegment('bugs').addSegment(pageNumber + 1).toString(), bugsList);   
+            bugsList = R.assoc('nextPage', lb.addSegment('bugs').addSegment(pageNumber + 1).toString(), bugsList);   
         }
 
         // add possible filters
@@ -55,27 +56,27 @@ exports.getRoot = R.curry((linkBuilder, dbConnection, req, res, next) => {
         .then(userResults => {
             const possibleAssignees = R.map(u => {
                 return {
-                    id: linkBuilder.addSegment('user').addSegment(u.userGuid).toString(),
+                    id: lb.addSegment('user').addSegment(u.userGuid).toString(),
                     fullName: u.fullName
                 }
             }, userResults.items);
 
             // combine results and return
             const ret = {
-                id: linkBuilder.addSegment('/').toString(),
+                id: lb.addSegment('/').toString(),
                 bugsList,
                 statusFilters,
                 possibleAssignees,
                 addBug: {
-                  id: linkBuilder.addSegment('bugs').toString(),
+                  id: lb.addSegment('bugs').toString(),
                   method: 'POST',
                   shape: {
-                    id: linkBuilder.addSegment('schema').addSegment('saveBug.json').toString()
+                    id: lb.addSegment('schema').addSegment('saveBug.json').toString()
                   }
                 } 
             };
 
-            res.json(ret);
+            res.json(res.representationBuilder(ret));
         });
     });
 });

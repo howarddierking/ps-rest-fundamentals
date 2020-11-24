@@ -2,18 +2,19 @@ const R = require('ramda');
 const bugsLib = require('../lib/bugs');
 const bugLib = require('../lib/bug');
 
-exports.getPage = R.curry((linkBuilder, dbConnection, req, res, next) => {
+exports.getPage = R.curry((dbConnection, req, res, next) => {
     const pageNumber = parseInt(req.params.pagekey);
     const pageSize = 3;
+    const lb = res.linkBuilder;
     
     bugsLib.getBugsPage(dbConnection, pageSize, pageNumber)
     .then(results => {
         let ret = {
-            id: linkBuilder.addSegment('bugs').addSegment(pageNumber).toString(),
+            id: lb.addSegment('bugs').addSegment(pageNumber).toString(),
             activeFilterStatus: "http://localhost:8080/statusFilters/all",
             items: R.map(r => {
                 return {
-                    id: linkBuilder.addSegment('bug').addSegment(r.bugGuid).toString(),
+                    id: lb.addSegment('bug').addSegment(r.bugGuid).toString(),
                     title: r.title,
                     createdBy: r.createdBy,
                     createdOn: r.createdOn,
@@ -23,13 +24,13 @@ exports.getPage = R.curry((linkBuilder, dbConnection, req, res, next) => {
         };
 
         if(pageNumber > 0){
-            ret = R.assoc('prevPage', linkBuilder.addSegment('bugs').addSegment(pageNumber - 1).toString(), ret);
+            ret = R.assoc('prevPage', lb.addSegment('bugs').addSegment(pageNumber - 1).toString(), ret);
         }
         if(results.moreItems){
-            ret = R.assoc('nextPage', linkBuilder.addSegment('bugs').addSegment(pageNumber + 1).toString(), ret);   
+            ret = R.assoc('nextPage', lb.addSegment('bugs').addSegment(pageNumber + 1).toString(), ret);   
         }
 
-        res.json(ret);
+        res.json(res.representationBuilder(ret));
     });
 });
 
