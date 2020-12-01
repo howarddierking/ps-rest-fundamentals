@@ -1,13 +1,11 @@
 const R = require('ramda');
-const bugsLib = require('../lib/bugs');
-const bugLib = require('../lib/bug');
 
-exports.getPage = R.curry((dbConnection, req, res, next) => {
+exports.getPage = R.curry((getBugsPage, req, res, next) => {
     const pageNumber = parseInt(req.params.pagekey);
     const pageSize = 3;
     const lb = res.linkBuilder;
     
-    bugsLib.getBugsPage(dbConnection, pageSize, pageNumber)
+    getBugsPage(pageSize, pageNumber)
     .then(results => {
         let ret = {
             id: lb.addSegment('bugs').addSegment(pageNumber).toString(),
@@ -34,8 +32,8 @@ exports.getPage = R.curry((dbConnection, req, res, next) => {
     });
 });
 
-exports.postBug = R.curry((dbConnection, req, res, next) => {
-    bugLib.saveBug(dbConnection, req.body)
+exports.postBug = R.curry((saveBug, req, res, next) => {
+    saveBug(req.body)
     .then(() => {
         res.status(200).send();
     })

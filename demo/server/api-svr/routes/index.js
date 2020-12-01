@@ -1,14 +1,12 @@
 const R = require('ramda');
-const bugsLib = require('../lib/bugs');
-const usersLib = require('../lib/users');
 
 /* GET home resource */
-exports.getRoot = R.curry((dbConnection, req, res, next) => {
+exports.getRoot = R.curry((getBugsPage, getAllUsers, req, res, next) => {
     const pageNumber = 0;
     const pageSize = 3;
     const lb = res.linkBuilder;
 
-    bugsLib.getBugsPage(dbConnection, pageSize, pageNumber)
+    getBugsPage(pageSize, pageNumber)
     .then(results => {
         // add bugs first page
         let bugsList = {
@@ -52,7 +50,7 @@ exports.getRoot = R.curry((dbConnection, req, res, next) => {
         ];
 
         // add possible assignees
-        usersLib.getAllUsers(dbConnection)
+        getAllUsers()
         .then(userResults => {
             const possibleAssignees = R.map(u => {
                 return {

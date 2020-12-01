@@ -21,7 +21,7 @@ getDbRep = exports.getDbRep = representation => {
     return ret;
 }
 
-const getBug = exports.getBug = (connection, bugGuid) => {
+const getBug = exports.getBug = R.curry((connection, bugGuid) => {
     const bugQuery = `select b.bugGuid,
         b.wasDerivedFrom,
         b.title,
@@ -54,7 +54,7 @@ const getBug = exports.getBug = (connection, bugGuid) => {
             }
         });
     });
-};
+});
 
 const createBug = (connection, representation) => {
     return new Promise((resolve, reject) => {
@@ -151,7 +151,7 @@ const incrementBug = (connection, representation) => {
 };
 
 
-const saveBug = exports.saveBug = async (connection, representation) => {
+const saveBug = exports.saveBug = R.curry(async (connection, representation) => {
     // create the entity for persistence
     // TODO: add comments
     const entity = getDbRep(representation);
@@ -162,4 +162,4 @@ const saveBug = exports.saveBug = async (connection, representation) => {
     } else {
         return await createBug(connection, entity);
     }
-}
+});

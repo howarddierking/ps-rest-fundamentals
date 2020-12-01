@@ -7,6 +7,10 @@ const R = require('ramda');
 const mysql = require('mysql');
 const conneg = require('./lib/connegMiddleware');
 
+const bugRepository = require('./lib/bug');
+const bugsRepository = require('./lib/bugs');
+const usersRepository = require('./lib/users');
+
 const indexRoutes = require('./routes/index');
 const bugsRoutes = require('./routes/bugs');
 const bugRoutes = require('./routes/bug');
@@ -40,10 +44,20 @@ const connection = mysql.createConnection({
 });
 
 // routes
-app.get('/', indexRoutes.getRoot(connection));
-app.get('/bugs/:pagekey', bugsRoutes.getPage(connection));
-app.post('/bugs', bugsRoutes.postBug(connection));
-app.get('/bug/:bugid', bugRoutes.getBug(connection));
-app.put('/bug/:bugid', bugRoutes.putBug(connection));
+app.get('/', indexRoutes.getRoot(
+    bugsRepository.getBugsPage(connection),
+    usersRepository.getAllUsers(connection)));
+
+app.get('/bugs/:pagekey', bugsRoutes.getPage(
+    bugsRepository.getBugsPage(connection)));
+
+app.post('/bugs', bugsRoutes.postBug(
+    bugRepository.saveBug(connection)));
+
+app.get('/bug/:bugid', bugRoutes.getBug(
+    bugRepository.getBug(connection)));
+
+app.put('/bug/:bugid', bugRoutes.putBug(
+    bugRepository.saveBug(connection)));
 
 module.exports = app;

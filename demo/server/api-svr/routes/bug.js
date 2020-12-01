@@ -1,11 +1,10 @@
 const R = require('ramda');
-const bugLib = require('../lib/bug');
 
-exports.getBug = R.curry((dbConnection, req, res, next) => {
+exports.getBug = R.curry((getBug, req, res, next) => {
     const bugGuid = req.params.bugid;
     const lb = res.linkBuilder;
     
-    bugLib.getBug(dbConnection, bugGuid)
+    getBug(bugGuid)
     .then(results => {
         const b = results.bug;
 
@@ -48,10 +47,10 @@ exports.getBug = R.curry((dbConnection, req, res, next) => {
     });
 });
 
-exports.putBug = R.curry((dbConnection, req, res, next) => {
+exports.putBug = R.curry((saveBug, req, res, next) => {
     console.info(req.body);
 
-    bugLib.saveBug(dbConnection, req.body)
+    saveBug(req.body)
     .then(() => {
         res.status(200).send();
     })
