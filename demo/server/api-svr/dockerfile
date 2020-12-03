@@ -1,0 +1,31 @@
+# LOCAL:    restbugs-server
+# GCP:      us.gcr.io/restbugs/api-server
+FROM node:12
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY package.json ./
+
+RUN npm install
+
+# app source
+COPY . .
+
+# build variables
+ARG gcp_sql_host
+ARG gcp_sql_user
+ARG gcp_sql_pwd
+ARG gcp_sql_db
+
+# environment
+ENV API_SVR_HOST="https://api.restbugs.com"
+ENV GCP_CLOUD_SQL_HOST=$gcp_sql_host
+ENV GCP_CLOUD_SQL_USER=$gcp_sql_user
+ENV GCP_CLOUD_SQL_PWD=$gcp_sql_pwd
+ENV GCP_CLOUD_SQL_DB=$gcp_sql_db
+ENV CORS_ALLOW_ORIGIN="https://restbugs.web.app"
+ENV CLOUD_SQL_CONNECTION_NAME="restbugs:us-central1:restbugs-db"
+
+EXPOSE 8080
+
+CMD ["bin/www"]

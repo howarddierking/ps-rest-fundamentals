@@ -69,7 +69,10 @@ exports.getRoot = R.curry((getBugsPage, getAllUsers, req, res, next) => {
                   id: lb.addSegment('bugs').toString(),
                   method: 'POST',
                   shape: {
-                    id: lb.addSegment('schema').addSegment('saveBug.json').toString()
+                    id: lb.addSegment('schema')
+                        .addSegment('saveBug.json')
+                        .overrideExtension('')
+                        .toString()
                   }
                 } 
             };

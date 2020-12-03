@@ -30,7 +30,10 @@ exports.getBug = R.curry((getBug, req, res, next) => {
                 id: lb.addSegment('bug').addSegment(b.bugGuid).toString(),
                 method: 'PUT',
                 shape: {
-                    id: lb.addSegment('schema').addSegment('saveBug.json').overrideExtension('').toString()   // note that this may be relevant only to a content type
+                    id: lb.addSegment('schema')
+                        .addSegment('saveBug.json')
+                        .overrideExtension('')
+                        .toString()   // note that this may be relevant only to a content type
                 }
             }
         };
