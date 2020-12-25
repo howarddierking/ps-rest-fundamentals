@@ -39,8 +39,8 @@ app.use((req, res, next) => {
 const dbSocketPath = process.env.DB_SOCKET_PATH || '/cloudsql';
 
 const connection = mysql.createConnection({
-    // host        : process.env['GCP_CLOUD_SQL_HOST'],
-    socketPath  : `${dbSocketPath}/${process.env.CLOUD_SQL_CONNECTION_NAME}`,
+    host        : process.env['GCP_CLOUD_SQL_HOST'],
+    // socketPath  : `${dbSocketPath}/${process.env.CLOUD_SQL_CONNECTION_NAME}`,
     user        : process.env['GCP_CLOUD_SQL_USER'],
     password    : process.env['GCP_CLOUD_SQL_PWD'],
     database    : process.env['GCP_CLOUD_SQL_DB']

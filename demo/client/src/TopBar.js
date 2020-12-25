@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -29,8 +30,29 @@ export default function TopBar(props){
                 <Typography variant="h6" className={classes.title}>
                     RestBugs
                 </Typography>
-                <Button color="inherit">Login</Button>
+
+                <LoginButton />
             </Toolbar>
         </AppBar>
     )
+}
+
+function LoginButton(props){
+    const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
+
+    if(isAuthenticated){
+        return (
+            <Button 
+                color="inherit" 
+                onClick={ () => logout({ returnTo: window.location.origin }) }>
+                    Hi {user && user.name}, Logout
+            </Button> )
+    } else {
+        return (
+            <Button 
+                    color="inherit" 
+                    onClick={ () => loginWithRedirect() }>
+                        Login
+            </Button> ) 
+    }
 }
